@@ -1,6 +1,7 @@
 import { useLanguage } from '../i18n/LanguageContext'
 
 const MORE_ITEMS = [
+  { id: 'tracking', icon: '✏️' },
   { id: 'collections', icon: '📋' },
   { id: 'search', icon: '🔍' },
   { id: 'settings', icon: '⚙️' },
@@ -16,8 +17,8 @@ export default function MobileMorePage({ onNavigate }) {
       </div>
       <div className="more-grid">
         {MORE_ITEMS.map((item) => (
-          <button key={item.id} className="more-card card" onClick={() => onNavigate(item.id)}>
-            <span className="more-icon">{item.icon}</span>
+          <button key={item.id} type="button" className="more-card card" onClick={() => onNavigate(item.id)}>
+            <span className="more-icon" aria-hidden="true">{item.icon}</span>
             <span>{t(`nav.${item.id}`)}</span>
           </button>
         ))}

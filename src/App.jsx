@@ -1,17 +1,8 @@
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useCallback, useRef, lazy, Suspense } from 'react'
 import SideNav from './components/SideNav'
 import BottomNav from './components/BottomNav'
 import Onboarding from './components/Onboarding'
 import PinGate from './components/PinGate'
-import CalendarPage from './pages/CalendarPage'
-import WeeklyPage from './pages/WeeklyPage'
-import TrackingPage from './pages/TrackingPage'
-import InsightsPage from './pages/InsightsPage'
-import SearchPage from './pages/SearchPage'
-import CollectionsPage from './pages/CollectionsPage'
-import CouplePage from './pages/CouplePage'
-import CoupleWeekPage from './pages/CoupleWeekPage'
-import Settings from './components/Settings'
 import DayModal from './components/DayModal'
 import HabitManager from './components/HabitManager'
 import Toast from './components/Toast'
@@ -19,6 +10,17 @@ import InstallPrompt from './components/InstallPrompt'
 import OnboardingTour from './components/OnboardingTour'
 import BreathingTimer from './components/BreathingTimer'
 import BackupBanner from './components/BackupBanner'
+
+const CalendarPage = lazy(() => import('./pages/CalendarPage'))
+const WeeklyPage = lazy(() => import('./pages/WeeklyPage'))
+const TrackingPage = lazy(() => import('./pages/TrackingPage'))
+const InsightsPage = lazy(() => import('./pages/InsightsPage'))
+const SearchPage = lazy(() => import('./pages/SearchPage'))
+const CollectionsPage = lazy(() => import('./pages/CollectionsPage'))
+const CouplePage = lazy(() => import('./pages/CouplePage'))
+const CoupleWeekPage = lazy(() => import('./pages/CoupleWeekPage'))
+const Settings = lazy(() => import('./components/Settings'))
+const MobileMorePage = lazy(() => import('./pages/MobileMorePage'))
 import {
   DEFAULT_HABITS, DEFAULT_MOODS, emptyDayEntry, todayKey, prevDayKey,
   getLoggingStreak, getHabitStreak, getWeekDates,
@@ -382,7 +384,7 @@ function AppContent() {
       <a href="#main-content" className="skip-link">{t('a11y.skipNav')}</a>
       <SideNav page={page} onNavigate={setPage} theme={theme} profilesMeta={profilesMeta}
         onToggleTheme={() => handleThemeChange(theme === 'light' ? 'dark' : 'light')} />
-      <BottomNav page={page} onNavigate={handleNavigate} />
+      <BottomNav page={page} onNavigate={handleNavigate} onLogToday={() => setSelectedDay(todayKey())} />
 
       <div className="app-body">
         <InstallPrompt />
@@ -395,9 +397,13 @@ function AppContent() {
               {new Date().toLocaleDateString(locale, { weekday: 'long', month: 'long', day: 'numeric' })}
             </p>
           </div>
+          <button type="button" className="bujo-btn primary top-bar-log" onClick={() => setSelectedDay(todayKey())}>
+            {t('logToday')}
+          </button>
         </header>
 
         <main id="main-content" className="main-content" tabIndex={-1}>
+          <Suspense fallback={<div className="page-loading" role="status">{t('loading')}</div>}>
           {page === 'calendar' && (
             <CalendarPage year={year} month={month} entries={entries} habits={habits} moods={moods} profile={profile}
               onDayClick={setSelectedDay} onMonthChange={(y, m) => { setYear(y); setMonth(m) }} />
@@ -450,6 +456,7 @@ function AppContent() {
             <Settings profile={profile} theme={theme} accent={accent} entries={entries} moods={moods}
               year={year} month={month} habits={habits} intentions={intentions} reflections={reflections}
               reflectionKey={reflectionKey} moodCounts={moodCounts} loggingStreak={loggingStreak}
+              lastBackup={lastBackup}
               onNavigateCalendar={() => setPage('calendar')}
               profilesMeta={profilesMeta}
               onUpdateProfile={(p) => { setProfile(p); saveProfile(p) }}
@@ -471,6 +478,7 @@ function AppContent() {
               }}
               onLock={() => setUnlocked(false)} />
           )}
+          </Suspense>
         </main>
       </div>
 

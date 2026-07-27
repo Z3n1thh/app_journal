@@ -21,7 +21,7 @@ import { useLanguage } from '../i18n/LanguageContext'
 
 export default function Settings({
   profile, theme, accent, entries, moods, year, month, habits, profilesMeta,
-  intentions, reflections, reflectionKey, moodCounts, loggingStreak,
+  intentions, reflections, reflectionKey, moodCounts, loggingStreak, lastBackup,
   onUpdateProfile, onThemeChange, onAccentChange, onLanguageChange,
   onUpdateMoods, onImport, onReset, onLock, onBackup, onSwitchProfile, onAddPartner,
   onNavigateCalendar, onHealthSync,
@@ -162,8 +162,8 @@ export default function Settings({
       </div>
 
       <div className="settings-grid">
-        <div className="card settings-card">
-          <h3>{t('settings.appearance')}</h3>
+        <details className="card settings-card settings-fold" open>
+          <summary className="settings-fold-summary">{t('settings.appearance')}</summary>
           <div className="theme-toggle">
             <button className={`theme-btn ${theme === 'light' ? 'active' : ''}`} onClick={() => onThemeChange('light')}>☀️ {t('light')}</button>
             <button className={`theme-btn ${theme === 'dark' ? 'active' : ''}`} onClick={() => onThemeChange('dark')}>🌙 {t('dark')}</button>
@@ -191,10 +191,10 @@ export default function Settings({
               {languages.map((l) => <option key={l.code} value={l.code}>{l.flag} {l.label}</option>)}
             </select>
           </label>
-        </div>
+        </details>
 
-        <div className="card settings-card">
-          <h3>{t('settings.profile')}</h3>
+        <details className="card settings-card settings-fold" open>
+          <summary className="settings-fold-summary">{t('settings.profile')}</summary>
           <label className="field-label">{t('settings.name')}
             <input className="bujo-input" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
           </label>
@@ -219,7 +219,7 @@ export default function Settings({
               </label>
             </>
           )}
-        </div>
+        </details>
 
         <div className="card settings-card">
           <h3>{t('settings.profiles')}</h3>
@@ -408,9 +408,17 @@ export default function Settings({
           <button className="bujo-btn ghost" onClick={() => setLocalMoods([...DEFAULT_MOODS])}>{t('moods_custom.reset')}</button>
         </div>
 
-        <div className="card settings-card">
-          <h3>{t('settings.backup')}</h3>
+        <details className="card settings-card settings-fold" open>
+          <summary className="settings-fold-summary">{t('settings.backup')}</summary>
           <p className="settings-hint">{t('settings.backupHint')}</p>
+          <p className="backup-status" role="status">
+            {lastBackup
+              ? t('settings.lastBackup', { date: new Date(lastBackup).toLocaleString() })
+              : t('settings.lastBackupNever')}
+          </p>
+          <button type="button" className="bujo-btn primary" onClick={() => { downloadBackup(); onBackup?.(); setImportStatus(t('settings.backupDownloaded')) }}>
+            {t('backup.exportNow')}
+          </button>
           <div className="backup-actions">
             <button className="bujo-btn" onClick={async () => {
               onNavigateCalendar?.()
@@ -476,7 +484,7 @@ export default function Settings({
             {t('settings.merge')}
           </label>
           {importStatus && <p className="import-status">{importStatus}</p>}
-        </div>
+        </details>
 
         <div className="card settings-card">
           <button className="bujo-btn primary full-width" onClick={handleSave}>{t('dayModal.save')}</button>

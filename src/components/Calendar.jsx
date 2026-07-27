@@ -59,8 +59,11 @@ export default function Calendar({
     cells.push(
       <button
         key={key}
+        type="button"
         className={`cal-cell day ${isToday ? 'today' : ''} ${hasData ? 'has-data' : ''} ${dimmed ? 'dimmed' : ''}`}
         onClick={() => onDayClick(key)}
+        aria-label={`${months[month]} ${day}${isToday ? ` (${t('calendar.today')})` : ''}${mood ? `, ${t(`moods.${mood.id}`)}` : ''}`}
+        aria-current={isToday ? 'date' : undefined}
       >
         <span className="day-number">{day}</span>
 

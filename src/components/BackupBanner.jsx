@@ -1,12 +1,25 @@
 import { useLanguage } from '../i18n/LanguageContext'
 
+function formatBackupDate(iso, locale) {
+  try {
+    return new Date(iso).toLocaleDateString(locale, { year: 'numeric', month: 'short', day: 'numeric' })
+  } catch {
+    return iso
+  }
+}
+
 export default function BackupBanner({ lastBackup, onBackup }) {
-  const { t } = useLanguage()
+  const { t, lang } = useLanguage()
+  const locales = { en: 'en-US', es: 'es-ES', fr: 'fr-FR', de: 'de-DE', nl: 'nl-NL', sv: 'sv-SE' }
+  const locale = locales[lang] || lang
+
   if (!lastBackup) {
     return (
-      <div className="backup-banner warn">
+      <div className="backup-banner warn" role="status">
         <span>{t('backup.never')}</span>
-        <button className="bujo-btn small" onClick={onBackup}>{t('settings.download')}</button>
+        <button type="button" className="bujo-btn small primary" onClick={onBackup}>
+          {t('backup.exportNow')}
+        </button>
       </div>
     )
   }
@@ -15,9 +28,12 @@ export default function BackupBanner({ lastBackup, onBackup }) {
   if (days < 7) return null
 
   return (
-    <div className="backup-banner warn">
+    <div className="backup-banner warn" role="status">
       <span>{t('backup.overdue', { days })}</span>
-      <button className="bujo-btn small" onClick={onBackup}>{t('settings.download')}</button>
+      <button type="button" className="bujo-btn small primary" onClick={onBackup}>
+        {t('backup.exportNow')}
+      </button>
+      <span className="backup-banner-meta">{t('backup.lastOn', { date: formatBackupDate(lastBackup, locale) })}</span>
     </div>
   )
 }
