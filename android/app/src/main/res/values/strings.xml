@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Bujo Mood Tracker</string>
+    <string name="title_activity_main">Bujo Mood Tracker</string>
+    <string name="package_name">com.bujo.moodtracker</string>
+    <string name="custom_url_scheme">com.bujo.moodtracker</string>
+</resources>

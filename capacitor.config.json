@@ -1,0 +1,11 @@
+{
+  "appId": "com.bujo.moodtracker",
+  "appName": "Bujo Mood Tracker",
+  "webDir": "dist",
+  "plugins": {
+    "LocalNotifications": {
+      "smallIcon": "ic_stat_icon_config_sample",
+      "iconColor": "#8b6914"
+    }
+  }
+}
