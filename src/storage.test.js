@@ -30,4 +30,9 @@ describe('storage backup roundtrip', () => {
     importBackup(backup)
     expect(loadEntries()['2026-07-01'].mood).toBe('good')
   })
+
+  it('loadEntries returns fallback when stored null', () => {
+    localStorage.setItem('bujo-entries', 'null')
+    expect(loadEntries()).toEqual({})
+  })
 })

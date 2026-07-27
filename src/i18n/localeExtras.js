@@ -1,5 +1,6 @@
 /** Deep-merge locale overrides onto English base */
 export function mergeLocale(base, override) {
+  if (!override || typeof override !== 'object') return { ...base }
   const out = { ...base }
   for (const key of Object.keys(override)) {
     const val = override[key]

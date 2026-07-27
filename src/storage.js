@@ -27,7 +27,10 @@ const STORAGE_KEYS = [
 function loadSync(key, fallback) {
   try {
     const raw = localStorage.getItem(key)
-    return raw ? JSON.parse(raw) : fallback
+    if (raw == null) return fallback
+    const parsed = JSON.parse(raw)
+    if (parsed == null) return fallback
+    return parsed
   } catch {
     return fallback
   }
