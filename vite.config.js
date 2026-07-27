@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig(({ command }) => {
   let base = '/'
-  if (process.env.GITHUB_PAGES === 'true') base = '/app_journal/'
+  if (command === 'build' && process.env.GITHUB_PAGES === 'true') base = '/app_journal/'
   else if (command === 'build') base = './'
 
   return {
