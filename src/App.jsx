@@ -48,7 +48,7 @@ const STREAK_MILESTONES = [7, 14, 30, 100]
 
 function applyTheme(theme, accent) {
   document.documentElement.setAttribute('data-theme', theme)
-  if (accent) document.documentElement.style.setProperty('--accent', accent)
+  if (accent && accent !== 'null') document.documentElement.style.setProperty('--accent', accent)
   else document.documentElement.style.removeProperty('--accent')
 }
 
