@@ -84,13 +84,9 @@ function AppContent() {
   const [showQuickLog, setShowQuickLog] = useState(false)
 
   useEffect(() => {
-    let active = true
-    const timeout = setTimeout(() => { if (active) setReady(true) }, 4000)
-
     migrateLocalStorageToIDB()
-      .then(async () => {
-        const data = await loadAllFromStorage()
-        if (!active) return
+      .then(() => loadAllFromStorage())
+      .then((data) => {
         setProfile(data.profile)
         setEntries(data.entries)
         if (data.habits) setHabits(data.habits)
@@ -114,13 +110,10 @@ function AppContent() {
           setAccent(color)
           saveAccent(color)
         }
-        setReady(true)
         initNativeApp()
       })
-      .catch(() => { if (active) setReady(true) })
-      .finally(() => clearTimeout(timeout))
-
-    return () => { active = false; clearTimeout(timeout) }
+      .catch(() => {})
+      .finally(() => setReady(true))
   }, [setLang])
 
   useEffect(() => {
