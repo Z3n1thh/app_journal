@@ -4,20 +4,24 @@ Live app: **https://z3n1thh.github.io/app_journal/**
 
 ## One-time setup (GitHub repo Settings)
 
-1. Open [github.com/Z3n1thh/app_journal/settings/pages](https://github.com/Z3n1thh/app_journal/settings/pages)
-2. Under **Build and deployment** → **Source**, choose **GitHub Actions**
-3. Push to `main` — the **Deploy GitHub Pages** workflow builds and publishes automatically
+1. Open [Settings → Pages](https://github.com/Z3n1thh/app_journal/settings/pages)
+2. **Build and deployment → Source:** choose **GitHub Actions** (not “Deploy from a branch”)
+3. If you previously used branch deploy, disable it — otherwise you’ll see extra failed `pages build and deployment` runs
 
-## How it works
+## Deploys
 
 - Workflow: `.github/workflows/pages.yml`
-- Build command: `GITHUB_PAGES=true npm run build:pages`
-- Vite `base` is set to `/app_journal/` for correct asset paths on Pages
+- Triggers on push to **`main` only**
+- Build: `GITHUB_PAGES=true npm run build:pages`
 
-## Install as PWA from Pages
+## Troubleshooting failed deploys
 
-On mobile, open the live URL → browser menu → **Add to Home Screen**.
+| Symptom | Fix |
+|---------|-----|
+| `deploy` job failed, `build` succeeded | Enable **GitHub Actions** as Pages source (step above) |
+| Deploy from `master` branch failed | Push to **`main`** instead — only `main` deploys |
+| Blank / 404 on refresh | Fixed via `404.html` + `.nojekyll` in build |
 
-## Custom domain (optional)
+## Install as PWA
 
-In repo **Settings → Pages → Custom domain**, add your domain and follow GitHub’s DNS instructions.
+Open the live URL on mobile → **Add to Home Screen**.

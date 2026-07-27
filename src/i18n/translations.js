@@ -239,8 +239,8 @@ export const translations = {
     hosting: {
       title: 'GitHub Pages', hint: 'Host this app free on GitHub — data stays in your browser.',
       openLive: 'Open live app', guide: 'Pages setup guide', liveNow: 'You are viewing the hosted version.',
-      step1: 'Repo Settings → Pages → Source: GitHub Actions',
-      step2: 'Push to main — deploy runs automatically',
+      step1: 'Settings → Pages → Source: GitHub Actions (not branch deploy)',
+      step2: 'Push to main only — deploy runs automatically',
       step3: 'Visit z3n1thh.github.io/app_journal',
     },
     summary: {

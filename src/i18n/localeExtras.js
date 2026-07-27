@@ -218,7 +218,7 @@ export const localeOverrides = {
     hosting: {
       title: 'GitHub Pages', hint: 'Hosta appen gratis på GitHub — data stannar i webbläsaren.',
       openLive: 'Öppna live-app', guide: 'Pages-installationsguide', liveNow: 'Du använder den hostade versionen.',
-      step1: 'Repo Settings → Pages → Source: GitHub Actions',
+      step1: 'Settings → Pages → Source: GitHub Actions (inte branch deploy)',
       step2: 'Pusha till main — deploy körs automatiskt',
       step3: 'Besök z3n1thh.github.io/app_journal',
     },
