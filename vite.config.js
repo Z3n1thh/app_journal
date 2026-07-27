@@ -1,7 +1,13 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-export default defineConfig(({ command }) => ({
-  plugins: [react()],
-  base: command === 'build' ? './' : '/',
-}))
+export default defineConfig(({ command }) => {
+  let base = '/'
+  if (process.env.GITHUB_PAGES === 'true') base = '/app_journal/'
+  else if (command === 'build') base = './'
+
+  return {
+    plugins: [react()],
+    base,
+  }
+})

@@ -14,6 +14,7 @@ import { estimateStorageUsage } from '../storage'
 import { requestNotificationPermission } from '../utils/notifications'
 import { isHealthAvailable, requestHealthAuth } from '../utils/health'
 import { isNativePlatform } from '../utils/native'
+import { GITHUB_PAGES_URL, docsPath, isGitHubPagesHost } from '../utils/baseUrl'
 import { hashPin } from '../utils/pin'
 import { DEFAULT_MOODS } from '../constants'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -263,7 +264,7 @@ export default function Settings({
                 <li>{t('settings.syncStep2')}</li>
                 <li>{t('settings.syncStep3')}</li>
               </ol>
-              <a className="bujo-btn ghost small" href="/docs/SUPABASE_SETUP.md" target="_blank" rel="noreferrer">
+              <a className="bujo-btn ghost small" href={docsPath('SUPABASE_SETUP.md')} target="_blank" rel="noreferrer">
                 {t('settings.syncGuideLink')}
               </a>
             </div>
@@ -340,9 +341,26 @@ export default function Settings({
         </div>
 
         <div className="card settings-card">
+          <h3>{t('hosting.title')}</h3>
+          <p className="settings-hint">{t('hosting.hint')}</p>
+          {isGitHubPagesHost() && <p className="settings-hint">{t('hosting.liveNow')}</p>}
+          <a className="bujo-btn" href={GITHUB_PAGES_URL} target="_blank" rel="noreferrer">
+            {t('hosting.openLive')}
+          </a>
+          <a className="bujo-btn ghost small" href={docsPath('GITHUB_PAGES.md')} target="_blank" rel="noreferrer">
+            {t('hosting.guide')}
+          </a>
+          <ol className="sync-steps">
+            <li>{t('hosting.step1')}</li>
+            <li>{t('hosting.step2')}</li>
+            <li>{t('hosting.step3')}</li>
+          </ol>
+        </div>
+
+        <div className="card settings-card">
           <h3>{t('native.title')}</h3>
           <p className="settings-hint">{t('native.hint')}</p>
-          <a className="bujo-btn ghost small" href="/docs/CAPACITOR_SETUP.md" target="_blank" rel="noreferrer">
+          <a className="bujo-btn ghost small" href={docsPath('CAPACITOR_SETUP.md')} target="_blank" rel="noreferrer">
             {t('native.guide')}
           </a>
         </div>

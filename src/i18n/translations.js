@@ -236,6 +236,13 @@ export const translations = {
       title: 'Native app', hint: 'Build Android/iOS app with Capacitor for better notifications and health sync.',
       guide: 'Capacitor setup guide',
     },
+    hosting: {
+      title: 'GitHub Pages', hint: 'Host this app free on GitHub — data stays in your browser.',
+      openLive: 'Open live app', guide: 'Pages setup guide', liveNow: 'You are viewing the hosted version.',
+      step1: 'Repo Settings → Pages → Source: GitHub Actions',
+      step2: 'Push to main — deploy runs automatically',
+      step3: 'Visit z3n1thh.github.io/app_journal',
+    },
     summary: {
       title: 'Your week',       intro: 'Based on your entries:',
       sleep: 'You averaged {h}h of sleep', mood: 'Most common mood: {mood}',

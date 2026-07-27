@@ -215,6 +215,13 @@ export const localeOverrides = {
       title: 'Native-app', hint: 'Bygg Android/iOS-app med Capacitor för bättre notiser och hälsosync.',
       guide: 'Capacitor-installationsguide',
     },
+    hosting: {
+      title: 'GitHub Pages', hint: 'Hosta appen gratis på GitHub — data stannar i webbläsaren.',
+      openLive: 'Öppna live-app', guide: 'Pages-installationsguide', liveNow: 'Du använder den hostade versionen.',
+      step1: 'Repo Settings → Pages → Source: GitHub Actions',
+      step2: 'Pusha till main — deploy körs automatiskt',
+      step3: 'Besök z3n1thh.github.io/app_journal',
+    },
     themes: { spring: 'Vår', summer: 'Sommar', autumn: 'Höst', winter: 'Vinter' },
   },
 }
