@@ -31,8 +31,7 @@ import {
   loadLanguage, saveLanguage, loadGoals, saveGoals,
   loadLastBackup, loadTourDone, saveTourDone, loadAccent, saveAccent,
   downloadBackup, loadProfilesMeta, saveProfilesMeta, snapshotCurrentData,
-  saveProfileSnapshot, loadProfileSnapshot, loadAllFromStorage,
-  loadAchievements, saveAchievements,
+  saveProfileSnapshot, loadProfileSnapshot, loadAchievements, saveAchievements,
 } from './storage'
 import { pushToCloud } from './utils/sync'
 import { migrateLocalStorageToIDB } from './utils/db'
@@ -84,36 +83,51 @@ function AppContent() {
   const [showQuickLog, setShowQuickLog] = useState(false)
 
   useEffect(() => {
-    migrateLocalStorageToIDB()
-      .then(() => loadAllFromStorage())
-      .then((data) => {
-        setProfile(data.profile)
-        setEntries(data.entries)
-        if (data.habits) setHabits(data.habits)
-        if (data.moods) setMoods(data.moods)
-        setCollections(data.collections)
-        setReflections(data.reflections)
-        setIntentions(data.intentions)
-        setGoals(data.goals)
-        setAchievements(data.achievements || [])
-        setTheme(data.theme || 'light')
-        setAccent(data.accent)
-        applyTheme(data.theme || 'light', data.accent)
-        setLang(data.language || 'en')
-        setLastBackup(data.lastBackup)
-        setProfilesMeta(data.profilesMeta)
-        setUnlocked(!data.profile?.pinHash)
-        if (data.profile?.onboarded && !data.tourDone) setShowTour(true)
-        if (data.profile?.autoSeasonTheme) {
-          const pack = getSeasonPackId()
-          const color = applyThemePack(pack, data.theme || 'light')
-          setAccent(color)
-          saveAccent(color)
-        }
-        initNativeApp()
-      })
-      .catch(() => {})
-      .finally(() => setReady(true))
+    const data = {
+      profile: loadProfile(),
+      entries: loadEntries(),
+      habits: loadHabits(),
+      moods: loadMoods(),
+      collections: loadCollections(),
+      reflections: loadReflections(),
+      intentions: loadIntentions(),
+      goals: loadGoals(),
+      achievements: loadAchievements(),
+      theme: loadTheme(),
+      language: loadLanguage(),
+      accent: loadAccent(),
+      lastBackup: loadLastBackup(),
+      tourDone: loadTourDone(),
+      profilesMeta: loadProfilesMeta(),
+    }
+
+    setProfile(data.profile)
+    setEntries(data.entries)
+    if (data.habits) setHabits(data.habits)
+    if (data.moods) setMoods(data.moods)
+    setCollections(data.collections)
+    setReflections(data.reflections)
+    setIntentions(data.intentions)
+    setGoals(data.goals)
+    setAchievements(data.achievements || [])
+    setTheme(data.theme || 'light')
+    setAccent(data.accent)
+    applyTheme(data.theme || 'light', data.accent)
+    setLang(data.language || 'en')
+    setLastBackup(data.lastBackup)
+    setProfilesMeta(data.profilesMeta)
+    setUnlocked(!data.profile?.pinHash)
+    if (data.profile?.onboarded && !data.tourDone) setShowTour(true)
+    if (data.profile?.autoSeasonTheme) {
+      const pack = getSeasonPackId()
+      const color = applyThemePack(pack, data.theme || 'light')
+      setAccent(color)
+      saveAccent(color)
+    }
+    setReady(true)
+
+    migrateLocalStorageToIDB().catch(() => {})
+    initNativeApp().catch(() => {})
   }, [setLang])
 
   useEffect(() => {
@@ -333,7 +347,7 @@ function AppContent() {
 
   if (!ready) {
     return (
-      <div className="app-loading" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh' }}>
+      <div className="app-loading" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', color: 'var(--ink)' }}>
         <p>Loading…</p>
       </div>
     )
