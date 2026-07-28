@@ -229,5 +229,14 @@ export const localeOverrides = {
       step2: 'Pusha till main — deploy körs automatiskt',
       step3: 'Besök z3n1thh.github.io/app_journal',
     },
+    legal: {
+      title: 'Juridiskt',
+      hint: 'Licens, integritet, villkor och tredjepartsattribution för denna open-source-app.',
+      license: 'MIT-licens',
+      notice: 'Tredjepartsnotiser',
+      privacy: 'Integritetspolicy',
+      terms: 'Användarvillkor',
+      notAdvice: 'Dessa dokument är inte juridisk rådgivning.',
+    },
   },
 }

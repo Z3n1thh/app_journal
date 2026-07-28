@@ -251,6 +251,15 @@ export const translations = {
       step2: 'Push to main only — deploy runs automatically',
       step3: 'Visit z3n1thh.github.io/app_journal',
     },
+    legal: {
+      title: 'Legal',
+      hint: 'License, privacy, terms, and third-party attributions for this open-source app.',
+      license: 'MIT License',
+      notice: 'Third-party notices',
+      privacy: 'Privacy policy',
+      terms: 'Terms of use',
+      notAdvice: 'These documents are not legal advice.',
+    },
     summary: {
       title: 'Your week',       intro: 'Based on your entries:',
       sleep: 'You averaged {h}h of sleep', mood: 'Most common mood: {mood}',

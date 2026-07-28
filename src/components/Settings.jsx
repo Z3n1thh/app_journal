@@ -487,6 +487,18 @@ export default function Settings({
         </details>
 
         <div className="card settings-card">
+          <h3>{t('legal.title')}</h3>
+          <p className="settings-hint">{t('legal.hint')}</p>
+          <div className="backup-actions">
+            <a className="bujo-btn" href={docsPath('LICENSE')} target="_blank" rel="noreferrer">{t('legal.license')}</a>
+            <a className="bujo-btn" href={docsPath('NOTICE.md')} target="_blank" rel="noreferrer">{t('legal.notice')}</a>
+            <a className="bujo-btn" href={docsPath('PRIVACY.md')} target="_blank" rel="noreferrer">{t('legal.privacy')}</a>
+            <a className="bujo-btn" href={docsPath('TERMS.md')} target="_blank" rel="noreferrer">{t('legal.terms')}</a>
+          </div>
+          <p className="settings-hint">{t('legal.notAdvice')}</p>
+        </div>
+
+        <div className="card settings-card">
           <button className="bujo-btn primary full-width" onClick={handleSave}>{t('dayModal.save')}</button>
         </div>
 
