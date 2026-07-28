@@ -229,5 +229,15 @@ export const localeOverrides = {
       step2: 'Pusha till main — deploy körs automatiskt',
       step3: 'Besök z3n1thh.github.io/app_journal',
     },
+    legal: {
+      title: 'Juridik',
+      hint: 'Licens, integritet, villkor och tredjepartsattributioner för appen.',
+      medical: 'Inte medicinsk rådgivning — endast journalföring och insikter. Sök professionell hjälp för hälsobeslut.',
+      privacy: 'Integritetspolicy',
+      terms: 'Användarvillkor',
+      notices: 'Tredjepartsmeddelanden',
+      license: 'MIT-licens',
+      weatherAttr: 'Väderdata från Open-Meteo.com (när väder är aktiverat).',
+    },
   },
 }

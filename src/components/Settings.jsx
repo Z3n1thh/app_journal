@@ -366,6 +366,19 @@ export default function Settings({
         </div>
 
         <div className="card settings-card">
+          <h3>{t('legal.title')}</h3>
+          <p className="settings-hint">{t('legal.hint')}</p>
+          <p className="settings-hint">{t('legal.medical')}</p>
+          <div className="backup-actions">
+            <a className="bujo-btn ghost small" href={docsPath('PRIVACY.md')} target="_blank" rel="noreferrer">{t('legal.privacy')}</a>
+            <a className="bujo-btn ghost small" href={docsPath('TERMS.md')} target="_blank" rel="noreferrer">{t('legal.terms')}</a>
+            <a className="bujo-btn ghost small" href={docsPath('THIRD_PARTY_NOTICES.md')} target="_blank" rel="noreferrer">{t('legal.notices')}</a>
+            <a className="bujo-btn ghost small" href={docsPath('LICENSE')} target="_blank" rel="noreferrer">{t('legal.license')}</a>
+          </div>
+          <p className="settings-hint">{t('legal.weatherAttr')}</p>
+        </div>
+
+        <div className="card settings-card">
           <h3>{t('reminders.title')}</h3>
           <label className="merge-check">
             <input type="checkbox" checked={reminders.enabled} onChange={handleEnableReminder} />

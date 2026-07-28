@@ -251,6 +251,16 @@ export const translations = {
       step2: 'Push to main only — deploy runs automatically',
       step3: 'Visit z3n1thh.github.io/app_journal',
     },
+    legal: {
+      title: 'Legal',
+      hint: 'License, privacy, terms, and third-party attributions for this app.',
+      medical: 'Not medical advice — journaling and insights only. Seek a professional for health decisions.',
+      privacy: 'Privacy policy',
+      terms: 'Terms of use',
+      notices: 'Third-party notices',
+      license: 'MIT license',
+      weatherAttr: 'Weather data by Open-Meteo.com (when weather is enabled).',
+    },
     summary: {
       title: 'Your week',       intro: 'Based on your entries:',
       sleep: 'You averaged {h}h of sleep', mood: 'Most common mood: {mood}',

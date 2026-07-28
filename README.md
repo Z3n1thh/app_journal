@@ -1,6 +1,12 @@
 # Bujo Mood Tracker
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![Privacy](https://img.shields.io/badge/Privacy-Policy-blue.svg)](./PRIVACY.md)
+[![Terms](https://img.shields.io/badge/Terms-of%20Use-lightgrey.svg)](./TERMS.md)
+
 A bullet-journal style mood tracker with calendar layout, habit tracking, and optional menstrual cycle monitoring.
+
+> **Not medical advice.** Mood, cycle, health, and AI features are for personal journaling only — see [TERMS.md](./TERMS.md).
 
 ## Features
 
@@ -40,3 +46,26 @@ In **Settings → Backup & restore**:
 - **Copy to clipboard** — paste into notes or cloud storage
 - **Import file / Paste backup** — restore from a previous export
 - Check **Merge** to combine with existing data instead of replacing it
+
+## Legal & compliance
+
+| Document | Purpose |
+|----------|---------|
+| [LICENSE](./LICENSE) | MIT license for **this project’s** source code |
+| [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md) | Licenses & attribution for dependencies, fonts, and APIs |
+| [PRIVACY.md](./PRIVACY.md) | What data stays local vs optional third-party services |
+| [TERMS.md](./TERMS.md) | Terms of use, warranties disclaimer, **not medical advice** |
+| [SECURITY.md](./SECURITY.md) | How to report issues; never commit API keys |
+
+### Third-party services used by the app
+
+- **Open-Meteo** — optional weather (attribution: Weather data by Open-Meteo.com)
+- **Google Fonts** — Inter & Caveat (SIL OFL)
+- **Supabase / OpenAI / Anthropic** — optional; you supply your own keys/project
+- **Capacitor / Capgo Health** — native builds (MIT / MPL-2.0)
+
+API keys must never be committed to GitHub. Enter them only in Settings on your device.
+
+## Live demo
+
+https://z3n1thh.github.io/app_journal/
